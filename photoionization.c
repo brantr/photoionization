@@ -1,3 +1,5 @@
+#include <math.h>
+#include <stdio.h>
 #include "photoionization.h"
 
 //fitting function of verner ea 1996
@@ -10,7 +12,9 @@ double F_verner(double x, SigmaParams SP)
 	double y = sqrt(x*x + y_1*y_1);
 	double a = sqrt(y/y_a);
 	double b = 0.5*P-5.5;
-	return ( pow(x-1,2) + y_w*y_w )*pow(y,b)*(1+a,-P);
+	double F = ( pow(x-1,2) + y_w*y_w )*pow(y,b)*pow(1+a,-P);
+	//printf("x %e y %e y_w %e a %e b %e P %e F %e\n",x,y,y_w,a,b,P,F);
+	return F;
 }
 
 //photoionization cross section
